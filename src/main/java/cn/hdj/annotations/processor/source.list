@@ -1,0 +1,5 @@
+cn.hdj.annotations/processor/annotation/Property.java
+cn.hdj.annotations/processor/annotation/Id.java
+cn.hdj.annotations/processor/annotation/Persistent.java
+cn.hdj.annotations/processor/HibernateAnnotationProcessor.java
+
