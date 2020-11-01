@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * VM Args : -Xmx20m -Xms20m -XX：+HeapDumpOnOutOf-MemoryError
+ * VM Args :-Xmx20m -Xms20m -XX:+HeapDumpOnOutOfMemoryError
  */
 public class HeadOOM {
 
