@@ -2,12 +2,9 @@ package cn.hdj.jvm.classloading;
 
 import sun.misc.Launcher;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * 显示当前加载器，加载那些jar包
@@ -19,7 +16,7 @@ public class ClassLoaderTest {
         //启动类加载器
         URL[] urLs = Launcher.getBootstrapClassPath().getURLs();
         System.out.println("启动类加载器=》");
-        Arrays.stream(urLs).forEach(System.out::println);
+       // Arrays.stream(urLs).forEach(System.out::println);
 
         //扩展类加载器
         System.out.println("扩展类加载器=》");
@@ -43,7 +40,7 @@ public class ClassLoaderTest {
     private static void printURLForClassloader(ClassLoader classLoader) {
         Object ucp = isSignField(classLoader, "ucp");
         Object path = isSignField(ucp, "path");
-        ((ArrayList)path).forEach(System.out::println);
+        //((ArrayList)path).forEach(System.out::println);
     }
 
     private static Object isSignField(Object classLoader, String name) {
