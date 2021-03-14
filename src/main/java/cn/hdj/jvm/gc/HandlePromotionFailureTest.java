@@ -32,6 +32,5 @@ public class HandlePromotionFailureTest {
         allocate5 = null;
         allocate6 = null;
         allocate7 = new byte[_1M * 2];
-
     }
 }
