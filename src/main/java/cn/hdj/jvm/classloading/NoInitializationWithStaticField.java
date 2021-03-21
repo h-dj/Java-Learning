@@ -4,6 +4,7 @@ package cn.hdj.jvm.classloading;
 /**
  * 被动引用： 演示一
  * 非主动使用类字段演示
+ * jvm args: -XX:+TraceClassLoading
  * @author hdj
  */
 public class NoInitializationWithStaticField {
