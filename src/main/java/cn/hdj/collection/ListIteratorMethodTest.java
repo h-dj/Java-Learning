@@ -2,6 +2,7 @@ package cn.hdj.collection;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * @Description: TODO(这里用一句话描述这个类的作用)
@@ -21,7 +22,22 @@ public class ListIteratorMethodTest {
         arrayList.add(4);
         arrayList.add(5);
         iteratorThree(arrayList);
+
+
+        List<? extends B> as=new ArrayList<D>();
+        List<? extends A> as5=new ArrayList<B>();
+
+        as5 = as;
+       // List<A> as3=new ArrayList<B>();
+        List<?> as2=new ArrayList<Object>();
+
+        List as4 =new ArrayList<A>();
     }
+
+    class A {}
+    class B extends A {}
+    class C extends A {}
+    class D extends B {}
 
     /**
      * 普通循环遍历
