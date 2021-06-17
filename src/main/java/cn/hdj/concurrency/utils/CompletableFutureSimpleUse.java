@@ -10,41 +10,41 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * @Description: CompletableFuture µÄ¼òµ¥Ê¹ÓÃ
+ * @Description: CompletableFuture çš„ç®€å•ä½¿ç”¨
  * @Author huangjiajian
  * @Date 2021/4/22 16:06
  */
 public class CompletableFutureSimpleUse {
 
     /**
-     * CompletableFuture ×÷ÎªfutureÊ¹ÓÃ
+     * CompletableFuture ä½œä¸ºfutureä½¿ç”¨
      *
      * @throws ExecutionException
      * @throws InterruptedException
      */
     @Test
     public void test_as_simple_future() throws ExecutionException, InterruptedException {
-        //´´½¨¼ÆËãCompletableFuture
+        //åˆ›å»ºè®¡ç®—CompletableFuture
         CompletableFuture<String> completableFuture = new CompletableFuture<>();
 
-        //Ê¹ÓÃÏß³Ì³ØÒì²½Ö´ĞĞ
+        //ä½¿ç”¨çº¿ç¨‹æ± å¼‚æ­¥æ‰§è¡Œ
         Executors.newCachedThreadPool().submit(() -> {
             Thread.sleep(500);
             completableFuture.complete("Hello");
             return null;
         });
 
-        //»ñÈ¡·µ»ØÖµ
+        //è·å–è¿”å›å€¼
         Assert.assertEquals("Hello", completableFuture.get());
     }
 
     /**
-     * CompletableFuture ¿ÉÒÔÊ¹ÓÃlambda ×éºÏÂß¼­
+     * CompletableFuture å¯ä»¥ä½¿ç”¨lambda ç»„åˆé€»è¾‘
      */
     @Test
     public void test_encapsulated_computation_logic() throws ExecutionException, InterruptedException {
 
-        //Ê¹ÓÃ Supplier £¬»ñÈ¡·µ»ØÖµ
+        //ä½¿ç”¨ Supplier ï¼Œè·å–è¿”å›å€¼
         CompletableFuture<String> future
                 = CompletableFuture.supplyAsync(() -> "Hello");
 
@@ -54,7 +54,7 @@ public class CompletableFutureSimpleUse {
 
 
     /**
-     * ºÏ²¢¶à¸ö CompletableFuture ²Ù×÷
+     * åˆå¹¶å¤šä¸ª CompletableFuture æ“ä½œ
      *
      * @throws ExecutionException
      * @throws InterruptedException
@@ -63,7 +63,7 @@ public class CompletableFutureSimpleUse {
     public void test_combining_futures() throws ExecutionException, InterruptedException {
         CompletableFuture<String> completableFuture
                 = CompletableFuture.supplyAsync(() -> "Hello")
-                //×éºÏCompletableFuture£¬ ½«ÉÏÒ»¸ö¼ÆËã½á¹û´«µİ¸öÏÂÒ»¸öCompletableFuture
+                //ç»„åˆCompletableFutureï¼Œ å°†ä¸Šä¸€ä¸ªè®¡ç®—ç»“æœä¼ é€’ä¸ªä¸‹ä¸€ä¸ªCompletableFuture
                 .thenCompose(s -> CompletableFuture.supplyAsync(() -> s + " World"));
         Assert.assertEquals("Hello World", completableFuture.get());
 
@@ -79,7 +79,7 @@ public class CompletableFutureSimpleUse {
 
     @Test
     public void test_parallelism_task() throws ExecutionException, InterruptedException {
-        //²¢ĞĞÖ´ĞĞÈÎÎñ£¬²»´¦Àí½á¹û
+        //å¹¶è¡Œæ‰§è¡Œä»»åŠ¡ï¼Œä¸å¤„ç†ç»“æœ
         CompletableFuture<String> future1
                 = CompletableFuture.supplyAsync(() -> "Hello");
         CompletableFuture<String> future2
@@ -92,7 +92,7 @@ public class CompletableFutureSimpleUse {
 
         Assert.assertEquals(null, combinedFuture.get());
 
-        //²¢ĞĞ´¦Àí£¬´¦Àí·µ»Ø½á¹û£¬Ê¹ÓÃjoin
+        //å¹¶è¡Œå¤„ç†ï¼Œå¤„ç†è¿”å›ç»“æœï¼Œä½¿ç”¨join
         CompletableFuture<String> future4
                 = CompletableFuture.supplyAsync(() -> "Hello");
         CompletableFuture<String> future5
