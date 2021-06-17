@@ -1,4 +1,4 @@
-package cn.hdj.concurrency.utils.completableFuture;
+package cn.hdj.concurrency.utils;
 
 import org.junit.Assert;
 import org.junit.Test;
