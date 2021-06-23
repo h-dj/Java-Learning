@@ -21,9 +21,8 @@ public class Service {
     private Condition conditionB = lock.newCondition();
 
     public void await_A() {
+        lock.lock();
         try {
-            lock.lock();
-
             System.out.println(" start wait" + Thread.currentThread().getName());
             //再调用等待时，必须先获取对象锁
             conditionA.await();
@@ -37,8 +36,9 @@ public class Service {
     }
 
     public void await_B() {
+        lock.lock();
         try {
-            lock.lock();
+
 
             System.out.println(" start wait" + Thread.currentThread().getName());
             //再调用等待时，必须先获取对象锁
@@ -53,9 +53,9 @@ public class Service {
     }
 
     public void signalAll_A() {
-
+        lock.lock();
         try {
-            lock.lock();
+
             System.out.println("signal time = " + System.currentTimeMillis() + Thread.currentThread().getName());
             //唤醒持有conditonA锁的线程
             conditionA.signalAll();
@@ -66,9 +66,9 @@ public class Service {
     }
 
     public void signalAll_B() {
-
+        lock.lock();
         try {
-            lock.lock();
+
             System.out.println("signal time = " + System.currentTimeMillis() + Thread.currentThread().getName());
             conditionB.signalAll();
         } finally {
