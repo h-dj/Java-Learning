@@ -15,19 +15,23 @@ public class MapTest {
 
     public static void main(String[] args) {
 
-        Hashtable hashtable=new Hashtable();
-        hashtable.put(null,"1");
+        MyHashMap myHashMap=new MyHashMap();
+        myHashMap.put("1","1");
+        myHashMap.put("2","2");
+        myHashMap.put("3","3");
+        myHashMap.put("4","4");
+        myHashMap.put("5","5");
 
-        HashMap hashMap=new HashMap(16);
-        hashMap.put(null,"1");
 
+        myHashMap.remove("2");
+        myHashMap.remove("2");
+        myHashMap.remove("5");
+        myHashMap.remove("1");
+        myHashMap.put("1","6");
 
-        Set set = hashMap.keySet();
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(myHashMap.get(""+i));
+        }
 
-        ConcurrentHashMap concurrentHashMap=new ConcurrentHashMap(16);
-        concurrentHashMap.put(null,"1");
-
-        LinkedHashMap linkedHashMap=new LinkedHashMap();
-        linkedHashMap.put("a",123);
     }
 }

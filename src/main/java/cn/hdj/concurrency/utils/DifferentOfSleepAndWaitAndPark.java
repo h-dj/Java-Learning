@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
 
 /**
- * @Description: TODO(ÕâÀïÓÃÒ»¾ä»°ÃèÊöÕâ¸öÀàµÄ×÷ÓÃ)
+ * @Description: TODO(è¿™é‡Œç”¨ä¸€å¥è¯æè¿°è¿™ä¸ªç±»çš„ä½œç”¨)
  * @Author huangjiajian
  * @Date 2021/6/17 12:17
  */
@@ -26,16 +26,16 @@ public class DifferentOfSleepAndWaitAndPark {
         new Thread(() -> {
             try {
                 Thread.sleep(1000);
-                System.out.println(Thread.currentThread().getName() + "Ö´ĞĞÍê³É£¡");
+                System.out.println(Thread.currentThread().getName() + "æ‰§è¡Œå®Œæˆï¼");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }, "Ïß³ÌA").start();
-        System.out.println("Ö´ĞĞ±ÈÏß³ÌA¿ì");
+        }, "çº¿ç¨‹A").start();
+        System.out.println("æ‰§è¡Œæ¯”çº¿ç¨‹Aå¿«");
     }
 
     /**
-     * ²âÊÔThread.sleep ÊÇ·ñ»áÊÍ·ÅËø: ²»»á
+     * æµ‹è¯•Thread.sleep æ˜¯å¦ä¼šé‡Šæ”¾é”: ä¸ä¼š
      */
     public static void test_sleep_lock_lose() {
 
@@ -45,28 +45,28 @@ public class DifferentOfSleepAndWaitAndPark {
             try {
                 synchronized (lock){
                     Thread.sleep(1000);
-                    System.out.println(Thread.currentThread().getName() + "Ö´ĞĞÍê³É£¡");
+                    System.out.println(Thread.currentThread().getName() + "æ‰§è¡Œå®Œæˆï¼");
                 }
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }, "Ïß³ÌA").start();
+        }, "çº¿ç¨‹A").start();
 
         new Thread(() -> {
             try {
                 synchronized (lock){
                     Thread.sleep(100);
-                    System.out.println(Thread.currentThread().getName() + "Ö´ĞĞÍê³É£¡");
+                    System.out.println(Thread.currentThread().getName() + "æ‰§è¡Œå®Œæˆï¼");
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }, "Ïß³ÌB").start();
+        }, "çº¿ç¨‹B").start();
     }
 
     /**
-     * ²âÊÔ Object.wait()µÄÊ¹ÓÃ£¬¼°ÊÇ·ñÊÍ·ÅËø£º »áÊÍ·ÅËø
+     * æµ‹è¯• Object.wait()çš„ä½¿ç”¨ï¼ŒåŠæ˜¯å¦é‡Šæ”¾é”ï¼š ä¼šé‡Šæ”¾é”
      */
     public static void test_wait(){
         final Object lock = new Object();
@@ -74,30 +74,30 @@ public class DifferentOfSleepAndWaitAndPark {
         Thread threadA = new Thread(() -> {
             try {
                 synchronized (lock) {
-                    System.out.println(Thread.currentThread().getName() + "¿ªÊ¼Ö´ĞĞ");
+                    System.out.println(Thread.currentThread().getName() + "å¼€å§‹æ‰§è¡Œ");
                     Thread.sleep(10000);
-                    System.out.println(Thread.currentThread().getName() + "Ö´ĞĞÍê³É£¡");
-                    //»½ĞÑÏß³ÌB
+                    System.out.println(Thread.currentThread().getName() + "æ‰§è¡Œå®Œæˆï¼");
+                    //å”¤é†’çº¿ç¨‹B
                     lock.notify();
                 }
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }, "Ïß³ÌA");
+        }, "çº¿ç¨‹A");
 
         Thread threadB = new Thread(() -> {
             try {
                 synchronized (lock) {
-                    System.out.println(Thread.currentThread().getName() + "¹ÒÆğ£¡");
-                    //ÊÍ·ÅËø£¬Ïß³Ì¿ªÊ¼»ñÈ¡Ëø
+                    System.out.println(Thread.currentThread().getName() + "æŒ‚èµ·ï¼");
+                    //é‡Šæ”¾é”ï¼Œçº¿ç¨‹å¼€å§‹è·å–é”
                     lock.wait();
-                    System.out.println(Thread.currentThread().getName() + "Ö´ĞĞÍê³É£¡");
+                    System.out.println(Thread.currentThread().getName() + "æ‰§è¡Œå®Œæˆï¼");
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }, "Ïß³ÌB");
+        }, "çº¿ç¨‹B");
 
 
         threadB.start();
@@ -105,7 +105,7 @@ public class DifferentOfSleepAndWaitAndPark {
     }
 
     /**
-     * wait ³¬Ê±ÊÍ·ÅËø
+     * wait è¶…æ—¶é‡Šæ”¾é”
      */
     public static void test_wait_timeout(){
         final Object lock = new Object();
@@ -113,28 +113,28 @@ public class DifferentOfSleepAndWaitAndPark {
         Thread threadA = new Thread(() -> {
             try {
                 synchronized (lock) {
-                    System.out.println(Thread.currentThread().getName() + "¿ªÊ¼Ö´ĞĞ");
+                    System.out.println(Thread.currentThread().getName() + "å¼€å§‹æ‰§è¡Œ");
                     Thread.sleep(2000);
-                    System.out.println(Thread.currentThread().getName() + "Ö´ĞĞÍê³É£¡");
+                    System.out.println(Thread.currentThread().getName() + "æ‰§è¡Œå®Œæˆï¼");
                 }
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }, "Ïß³ÌA");
+        }, "çº¿ç¨‹A");
 
         Thread threadB = new Thread(() -> {
             try {
                 synchronized (lock) {
-                    System.out.println(Thread.currentThread().getName() + "¹ÒÆğ£¡³¬Ê±5Ãë");
-                    //5Ãëºó£¬ÖØĞÂ»ñÈ¡Ëø£¬¼ÌĞøÖ´ĞĞ
+                    System.out.println(Thread.currentThread().getName() + "æŒ‚èµ·ï¼è¶…æ—¶5ç§’");
+                    //5ç§’åï¼Œé‡æ–°è·å–é”ï¼Œç»§ç»­æ‰§è¡Œ
                     lock.wait(5000);
-                    System.out.println(Thread.currentThread().getName() + "Ö´ĞĞÍê³É£¡");
+                    System.out.println(Thread.currentThread().getName() + "æ‰§è¡Œå®Œæˆï¼");
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }, "Ïß³ÌB");
+        }, "çº¿ç¨‹B");
 
 
         threadB.start();
@@ -145,25 +145,25 @@ public class DifferentOfSleepAndWaitAndPark {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Ïß³ÌAµ±Ç°×´Ì¬"+threadA.getState().name());
-        System.out.println("Ïß³ÌBµ±Ç°×´Ì¬"+threadB.getState().name());
+        System.out.println("çº¿ç¨‹Aå½“å‰çŠ¶æ€"+threadA.getState().name());
+        System.out.println("çº¿ç¨‹Bå½“å‰çŠ¶æ€"+threadB.getState().name());
     }
 
     /**
-     * ²âÊÔLockSupport.park ¹ÒÆğÏß³Ì
+     * æµ‹è¯•LockSupport.park æŒ‚èµ·çº¿ç¨‹
      */
     public static void test_park(){
         Thread threadA = new Thread(() -> {
-            System.out.println(Thread.currentThread().getName() + "¹ÒÆğ£¡");
+            System.out.println(Thread.currentThread().getName() + "æŒ‚èµ·ï¼");
             LockSupport.park();
-            System.out.println(Thread.currentThread().getName() + "Ö´ĞĞÍê³É£¡");
-        }, "Ïß³ÌA");
+            System.out.println(Thread.currentThread().getName() + "æ‰§è¡Œå®Œæˆï¼");
+        }, "çº¿ç¨‹A");
 
         threadA.start();
         try {
-            System.out.println("Ö÷Ïß³ÌË¯Ãß5Ãë");
+            System.out.println("ä¸»çº¿ç¨‹ç¡çœ 5ç§’");
             TimeUnit.SECONDS.sleep(5);
-            //»½ĞÑÏß³ÌA
+            //å”¤é†’çº¿ç¨‹A
             LockSupport.unpark(threadA);
         } catch (InterruptedException e) {
             e.printStackTrace();
