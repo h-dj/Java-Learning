@@ -23,10 +23,10 @@ import java.util.stream.Collectors;
  * | @SupportedAnnotationTypes ： 支持的注解类型
  * | @SupportedSourceVersion ： 支持的Java版本
  */
-@SupportedAnnotationTypes(
-        "com.baeldung.annotation.processor.BuilderProperty")
-@SupportedSourceVersion(SourceVersion.RELEASE_8)
-@AutoService(Processor.class)
+//@SupportedAnnotationTypes(
+//        "com.baeldung.annotation.processor.BuilderProperty")
+//@SupportedSourceVersion(SourceVersion.RELEASE_8)
+//@AutoService(Processor.class)
 public class BuilderProcessor extends AbstractProcessor {
 
     /**

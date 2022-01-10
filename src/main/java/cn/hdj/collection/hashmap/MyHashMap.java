@@ -92,7 +92,9 @@ public class MyHashMap<K, V> {
      * 获取值
      * <p>
      * 步骤：
-     * 1.
+     * 1. 计算键的散列码(hash code)
+     * 2. 计算存放的下标
+     * 3. 获取该下标下的链表，找到对应的值
      *
      * @param key
      * @return
@@ -114,7 +116,68 @@ public class MyHashMap<K, V> {
             }
             node = node.next;
         }
-        return get.value;
+        if (get != null) {
+            return get.value;
+        }
+        return null;
+    }
+
+    /**
+     * 删除元素
+     * 1. 计算键的散列码(hash code)
+     * 2. 计算存放的下标
+     * 3. 获取该下标下的链表，找到对应节点
+     * 4. 删除节点
+     *
+     * @param key
+     * @return
+     */
+    public V remove(K key) {
+        Node<K, V>[] t = this.tables;
+        int n = t.length;
+        //计算键的散列码(hash code)
+        int hash = hash(key);
+        //计算存放的下标
+        int index = indexFor(hash, n);
+        //目标节点的父节点
+        Node p = t[index];
+        //目标节点
+        Node<K, V> node = null;
+        Node<K, V> next = null;
+
+
+        //找出目标节点
+        if (p != null) {
+            //等于 p节点
+            if (p.key == key || p.key.equals(key)) {
+                node = p;
+            } else {
+                next = p.next;
+                if (next != null) {
+                    do {
+                        if (next.key == key || next.key.equals(key)) {
+                            //找到节点，就退出
+                            node = next;
+                            break;
+                        }
+                        p = next;
+                    } while ((next = next.next) != null);
+                }
+            }
+        }
+
+        //删除节点
+        if (node != null) {
+            //如果node 是 哈希表 index 索引链表的第一个元素
+            if (node == p) {
+                t[index] = node.next;
+            } else {
+                p.next = node.next;
+            }
+            --size;
+            return node.value;
+        }
+        return null;
     }
 
     private int hash(Object key) {
