@@ -9,7 +9,7 @@ import java.util.List;
  * @Author huangjiajian
  * @Date 2021/6/2 16:31
  * <p>
- * 集合遍历
+ * 集合遍历、集合迭代删除
  */
 public class ListIteratorMethodTest {
 
@@ -32,6 +32,18 @@ public class ListIteratorMethodTest {
         List<?> as2=new ArrayList<Object>();
 
         List as4 =new ArrayList<A>();
+
+
+        /**
+         * 迭代删除
+         */
+        Iterator<Integer> iterator = arrayList.iterator();
+        while (iterator.hasNext()){
+            iterator.next();
+            iterator.remove();
+        }
+
+
     }
 
     class A {}

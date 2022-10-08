@@ -30,5 +30,10 @@ public class TypePromotionProblem {
         b6 = b4 + b5;  // b4，b5由final 修饰，不会转换为int类型
        // b3 =(b1 + b2); //当表达式的操作数不是double，float，long时，两个操作数都转换为 int 类型，  b3 =  (byte)(b1 + b2)
 
+
+        char m='a';
+        //char res1=  (m+1); //为什么会出错， 这里发生类型提升
+        char res2='a'+1; //为什么没错， 'a'+1 = 98， char 范围内 0~65535
+        //char res3 = 'a' + 65536;  报错，超出范围
     }
 }

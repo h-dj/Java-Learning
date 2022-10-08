@@ -1,9 +1,8 @@
 package cn.hdj.annotations.ch1;
 
-import com.google.auto.service.AutoService;
 
-import javax.annotation.processing.*;
-import javax.lang.model.SourceVersion;
+import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.ExecutableType;
